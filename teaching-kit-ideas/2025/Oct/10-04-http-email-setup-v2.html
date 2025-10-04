@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>10-04-http-email-setup-v2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="cs210-student-guide-verified-email-setup-with-github-namecheap-and-brevo">CS210 Student Guide: Verified Email Setup with GitHub, Namecheap, and Brevo</h1>
+<h2 id="what-youll-need">What You’ll Need</h2>
+<ul>
+<li>A GitHub account</li>
+<li>A free <code>.me</code> domain via GitHub Student Developer Pack</li>
+<li>A Namecheap account (created during domain claim)</li>
+<li>A Brevo account (<a href="https://www.brevo.com">brevo.com</a>)</li>
+<li>Basic Python skills to use <code>mailer.py</code></li>
+</ul>
+<hr>
+<h2 id="step-1-claim-your-free-me-domain">Step 1: Claim Your Free <code>.me</code> Domain</h2>
+<ol>
+<li>Go to <a href="https://nc.me/landing/github">https://nc.me/landing/github</a></li>
+<li>Scroll to <strong>“Namecheap offer FAQ”</strong></li>
+<li>Click <strong>“Get started right here.”</strong></li>
+<li>Search for a domain ending in <code>.me</code> (e.g., <code>cs210studentname.me</code>)</li>
+<li>Sign in with GitHub and authorize Namecheap</li>
+<li>Complete the free checkout — Namecheap will email your login info</li>
+</ol>
+<hr>
+<h2 id="step-2-create-two-github-repositories">Step 2: Create Two GitHub Repositories</h2>
+<table>
+<thead>
+<tr>
+<th>Repo Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cs210-root-verify</code></td>
+<td>Verifies <code>cs210studentname.me</code></td>
+</tr>
+<tr>
+<td><code>cs210-mail-verify</code></td>
+<td>Verifies <code>mail.cs210studentname.me</code></td>
+</tr>
+</tbody>
+</table>
+<p>In each repo, add a simple <code>index.html</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Verified<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>This domain is verified<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h2 id="step-3-enable-github-pages">Step 3: Enable GitHub Pages</h2>
+<p>For each repo:</p>
+<ol>
+<li>Go to <strong>Settings &gt; Pages</strong></li>
+<li>Under <strong>Source</strong>, select <code>main</code> branch and <code>/root</code></li>
+<li>GitHub will generate a public URL</li>
+</ol>
+<hr>
+<h2 id="step-4-point-your-domain-to-github-pages">Step 4: Point Your Domain to GitHub Pages</h2>
+<p>In <strong>Namecheap &gt; Domain List &gt; Manage &gt; Advanced DNS</strong>, add these records:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Host</th>
+<th>Value</th>
+<th>TTL</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNAME</td>
+<td><code>@</code></td>
+<td><code>yourusername.github.io</code></td>
+<td>Automatic</td>
+<td>Root domain (<code>cs210studentname.me</code>)</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td><code>mail</code></td>
+<td><code>yourusername.github.io</code></td>
+<td>Automatic</td>
+<td>Subdomain (<code>mail.cs210studentname.me</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Replace <code>yourusername</code> with your actual GitHub username.</strong><br>
+Do not include <code>https://</code> or trailing slashes.</p>
+<hr>
+<h2 id="step-5-create-a-brevo-account-and-add-your-domain">Step 5: Create a Brevo Account and Add Your Domain</h2>
+<ol>
+<li>Go to <a href="https://www.brevo.com">brevo.com</a> and sign up</li>
+<li>Go to <strong>Settings &gt; Senders &amp; Domains &gt; Domains</strong></li>
+<li>Click <strong>Add a Domain</strong></li>
+<li>Enter your full domain (e.g., <code>cs210studentname.me</code>)</li>
+<li>Brevo will generate DNS records for verification</li>
+</ol>
+<hr>
+<h2 id="step-6-add-brevo-dns-records-in-namecheap">Step 6: Add Brevo DNS Records in Namecheap</h2>
+<p>In <strong>Advanced DNS</strong>, add the following records exactly as shown:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Host</th>
+<th>Value</th>
+<th>TTL</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TXT</td>
+<td><code>@</code></td>
+<td><code>brevo-code:4e2b86039e6ddd1892eb0fd3a660d8ce</code></td>
+<td>Automatic</td>
+<td>Brevo domain verification</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td><code>brevo1._domainkey</code></td>
+<td><code>b1.cs210studentname-me.dkim.brevo.com.</code></td>
+<td>30 min</td>
+<td>DKIM record 1</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td><code>brevo2._domainkey</code></td>
+<td><code>b2.cs210studentname-me.dkim.brevo.com.</code></td>
+<td>30 min</td>
+<td>DKIM record 2</td>
+</tr>
+<tr>
+<td>TXT</td>
+<td><code>_dmarc</code></td>
+<td><code>v=DMARC1; p=none; rua=mailto:rua@dmarc.brevo.com</code></td>
+<td>Automatic</td>
+<td>DMARC policy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Replace <code>cs210studentname</code> with your actual domain name prefix.</strong><br>
+The hyphen (<code>-me</code>) is part of Brevo’s formatting and is correct.</p>
+<hr>
+<h2 id="step-7-verify-your-domain-in-brevo">Step 7: Verify Your Domain in Brevo</h2>
+<p>After adding the records:</p>
+<ol>
+<li>Return to Brevo’s <strong>Domains</strong> section</li>
+<li>Click <strong>Verify</strong> next to your domain</li>
+<li>Wait for DNS propagation (usually under 1 hour)</li>
+</ol>
+<hr>
+<h2 id="step-8-get-your-brevo-api-key">Step 8: Get Your Brevo API Key</h2>
+<ol>
+<li>Go to <strong>SMTP &amp; API &gt; API Keys</strong></li>
+<li>Click <strong>Create a New API Key</strong></li>
+<li>Name it (e.g., <code>cs210-mailer</code>)</li>
+<li>Choose <strong>v3 (recommended)</strong></li>
+<li>Click <strong>Generate</strong> and <strong>copy the key immediately</strong></li>
+</ol>
+<hr>
+<h2 id="step-9-send-email-with-mailerpy">Step 9: Send Email with <code>mailer.py</code></h2>
+<p>Here’s a basic Python script using Brevo’s HTTP API:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> requests
+
+headers = {
+    <span class="hljs-string">"api-key"</span>: <span class="hljs-string">"your_api_key_here"</span>,
+    <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"application/json"</span>
+}
+
+data = {
+    <span class="hljs-string">"sender"</span>: {<span class="hljs-string">"name"</span>: <span class="hljs-string">"CS210"</span>, <span class="hljs-string">"email"</span>: <span class="hljs-string">"your_verified@cs210studentname.me"</span>},
+    <span class="hljs-string">"to"</span>: [{<span class="hljs-string">"email"</span>: <span class="hljs-string">"student@example.com"</span>}],
+    <span class="hljs-string">"subject"</span>: <span class="hljs-string">"Welcome to CS210"</span>,
+    <span class="hljs-string">"htmlContent"</span>: <span class="hljs-string">"&lt;h1&gt;Hello from CS210!&lt;/h1&gt;"</span>
+}
+
+response = requests.post(<span class="hljs-string">"https://api.brevo.com/v3/smtp/email"</span>, headers=headers, json=data)
+print(response.status_code, response.text)
+</div></code></pre>
+<hr>
+<h2 id="troubleshooting-tips">Troubleshooting Tips</h2>
+<ul>
+<li>DNS changes can take up to 24 hours</li>
+<li>Use <a href="https://www.whatsmydns.net">whatsmydns.net</a> to check TXT and CNAME propagation</li>
+<li>Double-check spelling and spacing in DNS records</li>
+<li>GitHub Pages may take a few minutes to issue SSL</li>
+<li>Brevo won’t verify until all records are correct and visible</li>
+</ul>
+<h2 id="notes">NOTES</h2>
+<h3 id="step-6-dns-records-breakdown">Step 6 DNS Records Breakdown</h3>
+<table>
+<thead>
+<tr>
+<th><strong>Host</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Protocol</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@</code></td>
+<td>TXT</td>
+<td>Brevo domain verification</td>
+<td>SPF (custom Brevo code)</td>
+</tr>
+<tr>
+<td><code>brevo1._domainkey</code></td>
+<td>CNAME</td>
+<td>DKIM signature key 1</td>
+<td>DKIM</td>
+</tr>
+<tr>
+<td><code>brevo2._domainkey</code></td>
+<td>CNAME</td>
+<td>DKIM signature key 2</td>
+<td>DKIM</td>
+</tr>
+<tr>
+<td><code>_dmarc</code></td>
+<td>TXT</td>
+<td>DMARC policy and reporting</td>
+<td>DMARC</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li>SPF: Brevo uses a TXT record with a custom code (<code>brevo-code:...</code>) to verify domain ownership — this is not a traditional SPF record, but it plays a similar role in confirming sender legitimacy.</li>
+<li>DKIM: These two CNAME records point to Brevo’s public keys for signing outgoing emails.</li>
+<li>DMARC: This TXT record defines how receiving servers should handle failed SPF/DKIM checks and where to send reports.</li>
+</ul>
+<hr>
+<h2 id="what-are-spf-dkim-and-dmarc">What Are SPF, DKIM, and DMARC?</h2>
+<p>These are email authentication protocols that help prevent spoofing, phishing, and spam. They tell receiving mail servers: “This email is legit — it really came from us.”</p>
+<hr>
+<h3 id="spf--sender-policy-framework">SPF — <em>Sender Policy Framework</em></h3>
+<ul>
+<li>What it does: Lists which servers are allowed to send email on behalf of your domain.</li>
+<li>How it works: When an email arrives, the recipient checks your domain’s SPF record to see if the sending server is authorized.</li>
+<li>Example: If Brevo sends email for <code>cs210studentname.me</code>, your SPF record says: “Yes, Brevo is allowed.”</li>
+</ul>
+<hr>
+<h3 id="dkim--domainkeys-identified-mail">DKIM — <em>DomainKeys Identified Mail</em></h3>
+<ul>
+<li>What it does: Adds a digital signature to each email using a private key.</li>
+<li>How it works: The recipient uses your public DKIM key (stored in DNS) to verify that the email wasn’t altered in transit.</li>
+<li>Example: Brevo signs your email with a private key; the recipient checks the signature using your DKIM record.</li>
+</ul>
+<hr>
+<h3 id="dmarc--domain-based-message-authentication-reporting--conformance">DMARC — <em>Domain-based Message Authentication, Reporting &amp; Conformance</em></h3>
+<ul>
+<li>What it does: Tells receiving servers what to do if SPF or DKIM checks fail.</li>
+<li>How it works: You publish a DMARC policy in DNS (e.g., “p=none” means don’t reject, just report failures).</li>
+<li>Example: If someone tries to spoof your domain, DMARC can instruct servers to reject or quarantine the message — and send you a report.</li>
+</ul>
+<hr>
+<h2 id="email-authentication-analogy-the-cs210-club">Email Authentication Analogy: The CS210 Club</h2>
+<p>Imagine your email system is like a private CS210 club. Only trusted members are allowed to send messages on behalf of the club. Here's how SPF, DKIM, and DMARC work in that world:</p>
+<hr>
+<h3 id="spf--guest-list-at-the-door">SPF = Guest List at the Door</h3>
+<ul>
+<li>Think of SPF as the guest list.</li>
+<li>When someone shows up claiming to be from CS210, the bouncer checks:<br>
+“Is this person on the list of approved senders?”</li>
+<li>If they’re not on the list, they’re turned away or flagged.</li>
+</ul>
+<p><em>In email terms: SPF checks if the sending server is allowed to send mail for your domain.</em></p>
+<hr>
+<h3 id="dkim--secret-handshake">DKIM = Secret Handshake</h3>
+<ul>
+<li>DKIM is like a secret handshake that only real CS210 members know.</li>
+<li>When a message arrives, the recipient checks:<br>
+“Did this person use the correct handshake?”</li>
+<li>If the handshake matches, the message is trusted.</li>
+</ul>
+<p><em>In email terms: DKIM uses a digital signature to prove the message wasn’t tampered with.</em></p>
+<hr>
+<h3 id="dmarc--security-policy">DMARC = Security Policy</h3>
+<ul>
+<li>DMARC is the security policy posted at the club entrance.</li>
+<li>It tells the bouncer what to do if someone fails the guest list or handshake test:
+<ul>
+<li>Let them in anyway? (p=none)</li>
+<li>Warn the manager? (send a report)</li>
+<li>Kick them out? (p=reject)</li>
+</ul>
+</li>
+</ul>
+<p><em>In email terms: DMARC tells receiving servers how to handle suspicious messages and where to send alerts.</em></p>
+<hr>
+<h3 id="why-it-matters">Why It Matters</h3>
+<p>Without these checks:</p>
+<ul>
+<li>Anyone can impersonate your domain</li>
+<li>Your emails might land in spam</li>
+<li>You lose credibility with mail servers</li>
+</ul>
+<p>With them:</p>
+<ul>
+<li>You prove you're legit</li>
+<li>You protect your domain</li>
+<li>You increase deliverability</li>
+</ul>
+
+</body>
+</html>

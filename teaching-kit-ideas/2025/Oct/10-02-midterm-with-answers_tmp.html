@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>10-02-midterm-with-answers.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="flask-mega-tutorial-midterm-instructor-version--with-answers">Flask Mega-Tutorial Midterm (Instructor Version — With Answers)</h1>
+<h2 id="multiple-choice-15-questions">Multiple Choice (15 questions)</h2>
+<ol>
+<li>
+<p>What command initializes a new Flask application?<br>
+<strong>Answer</strong>: C — No command is needed; just create an app instance<br>
+<strong>Explanation</strong>: Flask apps start by instantiating <code>Flask(__name__)</code>.</p>
+</li>
+<li>
+<p>Which file typically contains the Flask app instance in the microblog tutorial?<br>
+<strong>Answer</strong>: A — <code>__init__.py</code><br>
+<strong>Explanation</strong>: This supports modular structure and package initialization.</p>
+</li>
+<li>
+<p>What does the <code>@app.route</code> decorator do?<br>
+<strong>Answer</strong>: A — Registers a URL route<br>
+<strong>Explanation</strong>: It binds a view function to a URL.</p>
+</li>
+<li>
+<p>Which extension is used for form handling in Flask?<br>
+<strong>Answer</strong>: D — Flask-WTF<br>
+<strong>Explanation</strong>: Flask-WTF integrates WTForms for validation and rendering.</p>
+</li>
+<li>
+<p>What is the purpose of CSRF protection in forms?<br>
+<strong>Answer</strong>: A — To prevent cross-site request forgery<br>
+<strong>Explanation</strong>: It blocks unauthorized form submissions from other sites.</p>
+</li>
+<li>
+<p>What does <code>url_for('login')</code> return?<br>
+<strong>Answer</strong>: B — The login route URL<br>
+<strong>Explanation</strong>: It generates the URL for the <code>login</code> endpoint.</p>
+</li>
+<li>
+<p>Which method checks if a user is authenticated?<br>
+<strong>Answer</strong>: C — <code>current_user.is_authenticated</code><br>
+<strong>Explanation</strong>: This property is provided by Flask-Login.</p>
+</li>
+<li>
+<p>What does <code>flash()</code> do in Flask?<br>
+<strong>Answer</strong>: B — Displays messages to the user<br>
+<strong>Explanation</strong>: It stores messages for display after a redirect.</p>
+</li>
+<li>
+<p>What is the purpose of <code>@login_required</code>?<br>
+<strong>Answer</strong>: B — Restricts access to authenticated users<br>
+<strong>Explanation</strong>: It protects routes from unauthenticated access.</p>
+</li>
+<li>
+<p>Which command initializes a migration repository?<br>
+<strong>Answer</strong>: A — <code>flask db init</code><br>
+<strong>Explanation</strong>: This sets up Alembic migration tracking.</p>
+</li>
+<li>
+<p>What does <code>current_user</code> represent in Flask-Login?<br>
+<strong>Answer</strong>: A — The user currently logged in<br>
+<strong>Explanation</strong>: It’s a proxy for the authenticated user.</p>
+</li>
+<li>
+<p>What does <code>form.validate_on_submit()</code> check?<br>
+<strong>Answer</strong>: A — That the form was submitted and is valid<br>
+<strong>Explanation</strong>: It checks for POST and valid input.</p>
+</li>
+<li>
+<p>What does <code>db.session.commit()</code> do?<br>
+<strong>Answer</strong>: B — Saves changes to the database<br>
+<strong>Explanation</strong>: It finalizes staged transactions.</p>
+</li>
+<li>
+<p>What does <code>lazy='dynamic'</code> do in a relationship?<br>
+<strong>Answer</strong>: C — Allows query filtering on the relationship<br>
+<strong>Explanation</strong>: It returns a query object instead of a list.</p>
+</li>
+<li>
+<p>What does <code>get_or_404()</code> return?<br>
+<strong>Answer</strong>: C — An object or a 404 error<br>
+<strong>Explanation</strong>: It retrieves the object or aborts.</p>
+</li>
+</ol>
+<hr>
+<h2 id="short-answer-10-questions">Short Answer (10 questions)</h2>
+<ol start="16">
+<li>
+<p>What is the role of <code>__init__.py</code> in a Flask app?<br>
+<strong>Answer</strong>: It initializes the app package and registers blueprints and extensions.</p>
+</li>
+<li>
+<p>Why is CSRF protection important?<br>
+<strong>Answer</strong>: It prevents unauthorized form submissions from external sites.</p>
+</li>
+<li>
+<p>How does Flask-Migrate help manage database changes?<br>
+<strong>Answer</strong>: It uses Alembic to track and apply schema migrations.</p>
+</li>
+<li>
+<p>What does <code>current_user</code> represent?<br>
+<strong>Answer</strong>: The currently authenticated user object.</p>
+</li>
+<li>
+<p>How does pagination improve user experience?<br>
+<strong>Answer</strong>: It breaks large datasets into smaller pages for readability and performance.</p>
+</li>
+<li>
+<p>What does <code>@app.before_request</code> do?<br>
+<strong>Answer</strong>: Runs a function before each request, often for authentication or logging.</p>
+</li>
+<li>
+<p>What does <code>form.hidden_tag()</code> do?<br>
+<strong>Answer</strong>: Renders hidden fields including the CSRF token.</p>
+</li>
+<li>
+<p>What does <code>db.session.commit()</code> do?<br>
+<strong>Answer</strong>: Saves all staged changes to the database permanently.</p>
+</li>
+<li>
+<p>Why use <code>lazy='dynamic'</code> in relationships?<br>
+<strong>Answer</strong>: It allows query filtering and chaining on relationship attributes.</p>
+</li>
+<li>
+<p>What does the <code>follow()</code> method do in the User model?<br>
+<strong>Answer</strong>: Adds another user to the current user's followed list.</p>
+</li>
+</ol>
+<hr>
+<h2 id="match-the-concept-5-questions">Match the Concept (5 questions)</h2>
+<ol start="26">
+<li>Match each function to its role:<br>
+Column A | Column B<br>
+---------|----------<br>
+A. <code>render_template()</code> | 1. Renders HTML<br>
+B. <code>redirect()</code>        | 2. Sends user to another route<br>
+C. <code>url_for()</code>         | 3. Generates route URL<br>
+D. <code>flash()</code>           | 4. Displays messages</li>
+</ol>
+<p><strong>Answer</strong>:<br>
+A → 1<br>
+B → 2<br>
+C → 3<br>
+D → 4</p>
+<hr>
+<h2 id="fill-in-the-blank-10-questions">Fill in the Blank (10 questions)</h2>
+<ol start="27">
+<li>
+<p>What SQLAlchemy method defines relationships between models?<br>
+<strong>Answer</strong>: <code>db.relationship()</code></p>
+</li>
+<li>
+<p>What function displays temporary messages to the user?<br>
+<strong>Answer</strong>: <code>flash()</code></p>
+</li>
+<li>
+<p>What HTTP method must be used for <code>validate_on_submit()</code> to return <code>True</code>?<br>
+<strong>Answer</strong>: <code>POST</code></p>
+</li>
+<li>
+<p>What function generates a URL for a given endpoint?<br>
+<strong>Answer</strong>: <code>url_for()</code></p>
+</li>
+<li>
+<p>What function renders a template into HTML?<br>
+<strong>Answer</strong>: <code>render_template()</code></p>
+</li>
+<li>
+<p>What error does <code>@app.errorhandler(404)</code> handle?<br>
+<strong>Answer</strong>: <code>Not Found</code></p>
+</li>
+<li>
+<p>What object does <code>paginate()</code> return?<br>
+<strong>Answer</strong>: <code>Pagination</code></p>
+</li>
+<li>
+<p>What two things does <code>validate_on_submit()</code> check?<br>
+<strong>Answer</strong>: Request method and form validity</p>
+</li>
+<li>
+<p>What does <code>login_user()</code> do?<br>
+<strong>Answer</strong>: Logs in a user</p>
+</li>
+<li>
+<p>What does <code>get_or_404()</code> do if no object is found?<br>
+<strong>Answer</strong>: Raises a 404 error</p>
+</li>
+</ol>
+<hr>
+<h2 id="code-debugging-5-questions">Code Debugging (5 questions)</h2>
+<ol start="37">
+<li></li>
+</ol>
+<pre class="hljs"><code><div>{{ user.username }}
+{% if user.is_authenticated %}
+  Welcome!
+{% endif %}
+</div></code></pre>
+<p><strong>Issue</strong>: <code>user.is_authenticated</code> should be <code>current_user.is_authenticated</code>.</p>
+<ol start="38">
+<li></li>
+</ol>
+<pre class="hljs"><code><div>user = User.query.get(id)
+<span class="hljs-keyword">if</span> user == <span class="hljs-literal">None</span>:
+    abort(<span class="hljs-number">404</span>)
+</div></code></pre>
+<p><strong>Issue</strong>: Use <code>is None</code> instead of <code>== None</code>.</p>
+<ol start="39">
+<li></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-meta">@app.route('/register', methods=['POST'])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">register</span><span class="hljs-params">()</span>:</span>
+    form = RegistrationForm()
+    <span class="hljs-keyword">if</span> form.validate_on_submit():
+        <span class="hljs-comment"># create user</span>
+</div></code></pre>
+<p><strong>Issue</strong>: Missing <code>'GET'</code> in methods list; form won't render on initial visit.</p>
+<ol start="40">
+<li></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-meta">@app.route('/login', methods=['GET'])</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">login</span><span class="hljs-params">()</span>:</span>
+	form = LoginForm()
+	<span class="hljs-keyword">if</span> form.validate_on_submit():
+		<span class="hljs-comment"># log in user</span>
+</div></code></pre>
+<p>Issue: <code>validate_on_submit()</code> will never return <code>True</code> because the route only accepts <code>GET</code>.</p>
+<ol start="41">
+<li></li>
+</ol>
+<pre class="hljs"><code><div>user = User.query.filter_by(username=username)
+</div></code></pre>
+<p>Issue: Missing <code>.first()</code> or <code>.one()</code> — this returns a query object, not a user.</p>
+<h2 id="user--userqueryfilterbyusernameusernamefirst-or-one">user = User.query.filter_by(username=username).first() (or .one)</h2>
+<h2 id="ordering-steps-5-questions">Ordering Steps (5 questions)</h2>
+<ol start="42">
+<li>Sending email:</li>
+</ol>
+<ul>
+<li>A. Create message</li>
+<li>B. Configure mail settings</li>
+<li>C. Call <code>send_email()</code></li>
+<li>D. Import Flask-Mail<br>
+<strong>Answer</strong>: D → B → A → C</li>
+</ul>
+<ol start="43">
+<li>Creating a form:</li>
+</ol>
+<ul>
+<li>A. Define form class</li>
+<li>B. Render form in template</li>
+<li>C. Validate form</li>
+<li>D. Handle submission logic<br>
+<strong>Answer</strong>: A → B → C → D</li>
+</ul>
+<ol start="44">
+<li>Creating a new model:</li>
+</ol>
+<ul>
+<li>A. Define model class</li>
+<li>B. Add to session</li>
+<li>C. Commit session</li>
+<li>D. Create migration<br>
+<strong>Answer</strong>: A → D → B → C</li>
+</ul>
+<ol start="45">
+<li>User registration:</li>
+</ol>
+<ul>
+<li>A. Validate form input</li>
+<li>B. Hash password</li>
+<li>C. Create user object</li>
+<li>D. Add to database<br>
+<strong>Answer</strong>: A → B → C → D</li>
+</ul>
+<ol start="46">
+<li>Handling a login request:</li>
+</ol>
+<ul>
+<li>A. Create login form</li>
+<li>B. Validate form</li>
+<li>C. Authenticate user</li>
+<li>D. Redirect to next page<br>
+<strong>Answer</strong>: A → B → C → D</li>
+</ul>
+<hr>
+<h2 id="truefalse--justify-4-questions">True/False + Justify (4 questions)</h2>
+<ol start="47">
+<li>
+<p>Flask automatically commits database changes.<br>
+<strong>Answer</strong>: False — You must call <code>db.session.commit()</code> explicitly.</p>
+</li>
+<li>
+<p>Jinja2 templates can execute Python code directly.<br>
+<strong>Answer</strong>: False — Jinja2 supports expressions and control structures, not arbitrary Python.</p>
+</li>
+<li>
+<p>Flask-WTF includes CSRF protection by default.<br>
+<strong>Answer</strong>: True — CSRF is enabled unless explicitly disabled.</p>
+</li>
+<li>
+<p>SQLAlchemy models must inherit from <code>db.Model</code>.<br>
+<strong>Answer</strong>: True — This provides the ORM functionality.</p>
+</li>
+</ol>
+
+</body>
+</html>
