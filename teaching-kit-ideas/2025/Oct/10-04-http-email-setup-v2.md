@@ -10,6 +10,24 @@
 - Basic Python skills to use `mailer.py`
 
 ---
+## Step 0: Apply for the GitHub Student Developer Pack
+
+Before you can claim your free `.me` domain, you must be verified as a student by GitHub.
+
+1. Go to [https://education.github.com/pack](https://education.github.com/pack)  
+2. Click “Sign up for the Student Developer Pack”  
+3. You’ll be redirected to GitHub — look for the “Start an application” button on the right  
+4. Choose one of the following:
+   - Fastest method: Enter your school-issued email address (e.g., ending in `.edu`)  
+	 → GitHub will send a verification link to your inbox  
+   - Alternate method: Upload a document that proves you're a student  
+	 → Examples: student ID, transcript, enrollment letter  
+5. Submit your application and wait for approval  
+   - With a school email: usually 1–3 days but maybe a couple of hours or sooner 
+   - With documents: may take up to 2 weeks  
+6. Once approved, you’ll receive a confirmation email and gain access to the GitHub Student Developer Pack
+
+---
 
 ##  Step 1: Claim Your Free `.me` Domain
 
